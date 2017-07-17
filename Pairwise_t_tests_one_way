@@ -1,0 +1,20 @@
+## Pairwise t-tests for post-hoc analysis of a one-way ANOVA, including Bonferroni and Holm-Bonferroni Correction, and Tukey's HSD
+## This file is intended for use after the one-way ANOVA file and may not work if the variables are not defined as in the previous file
+## cat_var must be defined as a factor (see previous file)
+## Note that these corrections are meant to apply to equal n in each group and equal variances (use bartlett.test if necessary)
+
+#pairwise t-test, no correction 
+
+pairwise.t.test(cont_var,cat_var,p.adj="none")
+
+#pairwise t-test, bonferroni correction
+
+pairwise.t.test(cont_var,cat_var,p.adj="bonf")
+
+#pairwise t-test, holm correction
+
+pairwise.t.test(cont_var,cat_var,p.adj="holm")
+
+#Tukey's Honestly Significant Differences Test using previously created aov model 
+
+TukeyHSD(model)

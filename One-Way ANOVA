@@ -1,0 +1,41 @@
+# One-Way ANOVA Test: For use with a categorical variable of 3 or more levels and a continuous variable
+
+#load and attach data previously
+
+#defining categorical variable use name of categorical variable named in dataset actual levels replace a,b,c etc.
+
+cat_var <- factor(cat_var)
+
+#defining levels of categorical variable, actual levels replace a,b,c etc.
+
+levels(cat_var) <- c("a","b","c"...)
+
+#finding means and standard deviations of groups
+
+tapply(cont_var,cat_var,mean)
+tapply(cont_var,cat_var,sd)
+
+#creating linear model (analysis of variances)
+
+model <- aov(cont_var~cat_var)
+
+#displaying results of linear model
+
+summary(model)
+
+# example results:
+
+						 Df Sum Sq Mean Sq F value Pr(>F)  
+Concentration  4 0.2167 0.05419   3.197 0.0337 *
+Residuals     21 0.3559 0.01695                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#histogram plot of residuals, should be normally distributed
+
+RESIDUALS <- residuals(model)
+hist(residuals(model),col="darkgray")
+
+#plot predicted values vs. residuals, should be unbiased and homoskedastic
+
+plot(fitted(model),residuals(model))
